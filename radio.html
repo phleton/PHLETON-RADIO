@@ -1,0 +1,226 @@
+
+<!-- 
+    The best running EARTH (WORLD) ONLINE RADIO APPLICATION runs PHLETON!
+    Author: DARTH VADER aka DARK VADOR /oo\
+    Version: 0.0.1
+    Date: 12.01.2019
+    Revision: 14.01.2019
+    In case you find a better application, let vador knows.
+    Here is what will happen to the provider : /oo\ -> /xx\
+    Be a good citizen of the EMPIRE, always report to DARK VADOR : PROTECT, UNIFY, AND CONQUER!!!
+    (http://darkvador.phleton.com/) (c) 2019 LICENSED under the DARKO LICENSE.
+    /darko\.o./dark\
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-77444301-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-77444301-1');
+	</script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charset="UTF-8">
+        <meta name="description" content="Earth Radiostations">
+        <meta name="keywords" content="radio,world,earth,countries,continents">
+        <meta name="author" content="DARK VADOR (DARTH VADER)">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EARTH Radiostations (The World Radiostations)</title>
+        <style>
+            .earthRadios {
+                text-align: center;
+            }
+            .selCountries {
+                position: absolute; /* or absolute */
+                top: 80px;
+                right: calc(22%);
+            }
+            input {
+                position: absolute;
+                top: 80px;
+                right: calc(20%);
+            }
+        </style>
+        <script>
+            /**
+             * EARTH RADIOS
+             **/
+            const france  = [ 'http://www.nrj.fr/webradios/nrj'      ];
+			const germany = [ 'https://webradio.ffh.de'              ];
+            const italia  = [ 'https://www.m2o.it/on-air/'           ];
+			const spain   = [ 'http://www.rtve.es/alacarta/audios/programa/rne_rne1-live/1712486/' ];
+            const tunisia = [ 'https://www.mosaiquefm.net/fr/player' ];
+            const countryList     = [ france, germany, italia, spain, tunisia ];
+            const listOfCountries = [ 'France', 'Germany', 'Italia', 'Spain', 'Tunisia' ];
+            var gEarthIdx = 1;
+            var gToSelCountry = 'Germany';
+            var gSelCountryName = gToSelCountry;
+            // const listOfCountries=[ "Afghanistan","Åland Islands","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan",
+            //                         "Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia Plurinational State of","Bonaire Sint Eustatius and Saba","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","Brunei Darussalam","Bulgaria","Burkina Faso","Burundi",
+            //                         "Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Congo","Congo the Democratic Republic of the","Cook Islands","Costa Rica","Côte d'Ivoire","Croatia","Cuba","Curaçao","Cyprus","Czech Republic",
+            //                         "Denmark","Djibouti","Dominica","Dominican Republic",
+            //                         "Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia",
+            //                         "Falkland Islands (Malvinas)","Faroe Islands","Fiji","Finland","France","French Guiana","French Polynesia","French Southern Territories",
+            //                         "Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guernsey","Guinea","Guinea-Bissau","Guyana",
+            //                         "Haiti","Heard Island and McDonald Islands","Holy See (Vatican City State)","Honduras","Hong Kong","Hungary",
+            //                         "Iceland","India","Indonesia","Iran Islamic Republic of","Iraq","Ireland","Isle of Man","Israel","Italy",
+            //                         "Jamaica","Japan","Jersey","Jordan",
+            //                         "Kazakhstan","Kenya","Kiribati","Korea Democratic People's Republic of","Korea Republic of","Kuwait","Kyrgyzstan",
+            //                         "Lao People's Democratic Republic","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg",
+            //                         "Macao","Macedonia the former Yugoslav Republic of","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia Federated States of","Moldova Republic of","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","Northern Mariana Islands","Norway",
+            //                         "Oman",
+            //                         "Pakistan","Palau","Palestinian Territory Occupied",
+            //                         "Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn","Poland","Portugal","Puerto Rico",
+            //                         "Qatar",
+            //                         "Réunion","Romania","Russian Federation","Rwanda",
+            //                         "Saint Barthélemy","Saint Helena Ascension and Tristan da Cunha","Saint Kitts and Nevis","Saint Lucia","Saint Martin (French part)","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Sint Maarten (Dutch part)","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Svalbard and Jan Mayen","Swaziland","Sweden","Switzerland","Syrian Arab Republic",
+            //                         "Taiwan Province of China","Tajikistan","Tanzania United Republic of","Thailand","Timor-Leste","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu",
+            //                         "Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan",
+            //                         "Vanuatu","Venezuela Bolivarian Republic of","Viet Nam","Virgin Islands British","Virgin Islands U.S.",
+            //                         "Wallis and Futuna",
+            //                         "Western Sahara",
+            //                         "Yemen","Zambia","Zimbabwe"]
+
+            /**
+             * SetUp
+             */
+            function setUp() {
+                buildCountries();
+                createEarthRadios(gEarthIdx);
+            }
+
+            /**
+             * Add earth radio
+             */
+            function addEarthRadio() {
+                createEarthRadios(++gEarthIdx);
+            }
+
+            /**
+             * This method is used for amplification ;)
+             * This means, using the add-method we can add the same radio again and again :D
+             * which let you create an amplification of the radio, using the volume and stop button
+             * of the radio provider, you can do whatever you want :D :D :D
+             * Just plug a sound amplificateur, open your window studio and lets Rock in here ;) Yeah man!
+             */
+            function createEarthRadios(idx) {
+                var earthRadio = document.getElementById('earthRadios');
+                var earthRadioWorker = document.createElement('earthRadios' + idx);
+                var radioContent = "";
+                var selIdx = getIndexSelCountry();
+                radioContent += buildAllRadiosForEarthCountry(listOfCountries[selIdx], countryList[selIdx]);
+                earthRadioWorker.innerHTML = radioContent;
+                earthRadio.appendChild(earthRadioWorker);
+            }
+
+            /**
+             * Getting the selection index of the currently selected country
+             **/
+            function getIndexSelCountry() {
+                var selIdx = 0;
+                for (var i=0; i < listOfCountries.length; i++) {
+                    if (listOfCountries[i] == gSelCountryName) {
+                      selIdx = i;
+                    }
+                }
+                return selIdx;
+            }
+
+            /**
+             * Getting the all radio-stations for the given country
+             */
+            function getRadiosForCountry(name) {
+                if (name == 'France') {
+                  return buildAllRadiosForEarthCountry('France',france);
+                } else if (name == 'Germany') {
+                  return buildAllRadiosForEarthCountry('Germany',germany);
+                } else if (name == 'Italia') {
+                  return buildAllRadiosForEarthCountry('Italia',italia);
+                } else if (name == 'Spain') {
+                  return buildAllRadiosForEarthCountry('Spain',spain);
+                } else if (name == 'Tunisia') {
+                  return buildAllRadiosForEarthCountry('Tunisia',tunisia);
+                } else {
+                  var radios = [ 'Google', 'http://www.google.de/' ];
+                  return buildAllRadiosForEarthCountry('unknown',radios); 
+                }
+            }
+
+            /**
+             * Build all radios for a country
+             */
+            function buildAllRadiosForEarthCountry(name,radios) {
+                var content = "";
+                for (var j=0; j < radios.length; j++) {
+                    content += buildRadioForCountry(name, radios[j]);
+                }
+                return content;
+            }
+
+            /**
+             * Build a country along with the radio station
+             */
+            function buildRadioForCountry(name,src) {
+                var divForCountry = "<div id='" + name + "'>" + buildRadio(src,'600px','180px') + "</div>";
+                return divForCountry;
+            }
+
+            /**
+             * Build a radio station packed in a div
+             */
+            function buildRadio(src,width,height) {
+                return "<iframe src='" + src + "' " + "width='" + width + "' height='" + height + "' " + "frameborder='0'></iframe>";
+            }
+
+            /**
+             * build the combobox for all earth countries
+             */
+            function buildCountries() {
+                var content = ''; var countryName = ""; var opSelected = "";
+                for (var i=0; i < listOfCountries.length; i++) {
+                    countryName = listOfCountries[i];
+                    if (countryName == gToSelCountry) {
+                        opSelected = "selected";
+                    } else {
+                        opSelected = "";
+                    }
+                    content += "<option " + opSelected + " value='" + countryName + "'>" + countryName + "</option>";
+                }
+                // combobox world countries
+                createCombobox('selCountries','sel',content);
+            }
+
+            /**
+             * Create combobox for the countries selection
+             */
+            function createCombobox(id,selid,content) {
+                var container = document.getElementById(id);
+                var sel = document.createElement('select');
+                sel.setAttribute('id',selid);
+                sel.addEventListener('change', function() {
+                    var radioApp = document.getElementById('earthRadios');
+                    gSelCountryName = document.getElementById(selid).value;
+                    radioApp.innerHTML = getRadiosForCountry(gSelCountryName);
+                });
+                sel.innerHTML = content;
+                container.appendChild(sel);
+                return container;
+            }
+        </script>
+    </head>
+<body onload="setUp()">
+    <head>
+    </head>
+    <article>
+        <div id="addNewRadio">
+            <input type="button" width="80px" onclick="addEarthRadio()" value="+"></input>
+            <div id="selCountries" class="selCountries"></div>
+        </div>
+        <div id="earthRadios" class="earthRadios">  </div>
+    </article>
+</body>
+</html>
